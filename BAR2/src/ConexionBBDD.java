@@ -65,30 +65,4 @@ public class ConexionBBDD {
 		return ModeloTabla;
 		
 	}
-	public DefaultTableModel ConsultaTablaProductos() {
-		String [] columnas={"IDPRODUCTO","NOMBRE","PRECIO","CANTIDAD_RESTANTE"};
-		String [] registro=new String[2];
-		DefaultTableModel ModeloTabla = new DefaultTableModel(null,columnas);
-		String query = "SELECT * FROM ADRIAN.CATEGORIA";
-		 
-		try {
-			Statement stmt = conexion.createStatement();
-			ResultSet rset = stmt.executeQuery(query);
-			while(rset.next()) {
-				 registro[0]=rset.getString("IDCATEGORIA");
-		         registro[1]=rset.getString("TIPO_PRODUCTO");
-		         
-		         
-		         ModeloTabla.addRow(registro);
-			}
-			rset.close();
-			stmt.close();
-			
-		}catch (SQLException s){
-			s.printStackTrace();
-		}
-		
-		return ModeloTabla;
-		
-	}
 	}

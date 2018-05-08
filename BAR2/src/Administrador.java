@@ -72,7 +72,13 @@ public class Administrador {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
-		JButton btnNewButton = new JButton("CATEGORIAS Y PRODUCTOS");
+		JButton btnNewButton = new JButton("PRODUCTOS Y CATEGORIAS");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				ListaCategoriasProductos window = new ListaCategoriasProductos();
+				window.frame.setVisible(true);
+			}
+		});
 		btnNewButton.setBounds(10, 26, 790, 70);
 		btnNewButton.setFont(new Font("The Next Font", Font.PLAIN, 25));
 		btnNewButton.setForeground(Color.BLACK);

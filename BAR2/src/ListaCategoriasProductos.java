@@ -11,26 +11,14 @@ import javax.swing.table.DefaultTableModel;
 
 public class ListaCategoriasProductos {
 
-	private JFrame frame;
+	JFrame frame;
 	private JTable table;
 	private JButton btnListar;
 
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					ListaCategoriasProductos window = new ListaCategoriasProductos();
-					window.frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
+	
 	/**
 	 * Create the application.
 	 */
@@ -64,8 +52,9 @@ public class ListaCategoriasProductos {
 		btnListar = new JButton("LISTAR");
 		btnListar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				ConexionBBDD Prueba = new ConexionBBDD();
-				table.setModel(Prueba.ConsultaTablaCategorias());
+				
+				ConexionBBDD Prueba1 = new ConexionBBDD();
+				table.setModel(Prueba1.ConsultaTablaCategorias());
 			}
 		});
 		scrollPane.setRowHeaderView(btnListar);
