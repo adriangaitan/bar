@@ -4,6 +4,8 @@ import javax.swing.JButton;
 import java.awt.Font;
 import java.awt.Color;
 import java.awt.EventQueue;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class VentanaPrincipal {
 
@@ -44,6 +46,12 @@ public class VentanaPrincipal {
 		frame.getContentPane().setLayout(null);
 		
 		JButton btnPedidos = new JButton("PEDIDOS");
+		btnPedidos.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Pedidos window = new Pedidos();
+				window.frame.setVisible(true);
+			}
+		});
 		btnPedidos.setForeground(Color.RED);
 		btnPedidos.setBackground(Color.WHITE);
 		btnPedidos.setFont(new Font("The Next Font", Font.PLAIN, 60));
@@ -51,6 +59,12 @@ public class VentanaPrincipal {
 		frame.getContentPane().add(btnPedidos);
 		
 		JButton btnAdmin = new JButton("ADMIN");
+		btnAdmin.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Administrador window = new Administrador();
+				window.frame.setVisible(true);
+			}
+		});
 		btnAdmin.setFont(new Font("The Next Font", Font.PLAIN, 60));
 		btnAdmin.setForeground(Color.BLACK);
 		btnAdmin.setBounds(10, 456, 754, 95);

@@ -8,6 +8,7 @@ import javax.swing.JFrame;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
+import java.awt.Color;
 
 public class ListaCategoriasProductos {
 
@@ -49,7 +50,8 @@ public class ListaCategoriasProductos {
 		));
 		scrollPane.setViewportView(table);
 		
-		btnListar = new JButton("LISTAR");
+		btnListar = new JButton("VER");
+		btnListar.setForeground(Color.BLUE);
 		btnListar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
