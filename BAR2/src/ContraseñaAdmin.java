@@ -1,20 +1,16 @@
-
 import java.awt.EventQueue;
-
 import javax.swing.JFrame;
-import javax.swing.JPanel;
 import javax.swing.JLabel;
 import java.awt.Color;
 import javax.swing.JTextField;
 import java.awt.Font;
 import javax.swing.JButton;
-import java.awt.SystemColor;
+
 
 public class ContraseñaAdmin {
 
 	private JFrame frame;
 	private JTextField textField;
-	private JButton button;
 
 	/**
 	 * Launch the application.
@@ -68,13 +64,7 @@ public class ContraseñaAdmin {
 		JButton btnAtras = new JButton("VOLVER");
 		btnAtras.setBackground(new Color(240, 240, 240));
 		btnAtras.setFont(new Font("The Next Font", Font.PLAIN, 30));
-		btnAtras.setBounds(107, 353, 242, 82);
+		btnAtras.setBounds(279, 382, 242, 53);
 		frame.getContentPane().add(btnAtras);
-		
-		button = new JButton("CONFIRMAR");
-		button.setFont(new Font("The Next Font", Font.PLAIN, 30));
-		button.setBackground(SystemColor.menu);
-		button.setBounds(464, 353, 242, 82);
-		frame.getContentPane().add(button);
 	}
 }

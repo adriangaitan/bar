@@ -1,5 +1,4 @@
 import java.awt.EventQueue;
-
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
@@ -10,9 +9,6 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
-import javax.swing.JList;
-import javax.swing.AbstractListModel;
-import javax.swing.JTextPane;
 import java.awt.SystemColor;
 import javax.swing.JScrollPane;
 
@@ -25,7 +21,6 @@ public class Pedidos {
 	private JButton button;
 	private JButton button_1;
 	private JButton button_2;
-	private JButton button_3;
 	private JTextField textField_2;
 	private JTextField textField_3;
 	private JTextField textField_4;
@@ -107,16 +102,17 @@ public class Pedidos {
 		frame.getContentPane().add(button_1);
 		
 		button_2 = new JButton("VOLVER");
-		button_2.setBounds(24, 507, 242, 82);
+		button_2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				frame.setVisible(false);
+				VentanaPrincipal window = new VentanaPrincipal();
+				window.frame.setVisible(true);
+			}
+		});
+		button_2.setBounds(24, 542, 242, 47);
 		button_2.setFont(new Font("The Next Font", Font.PLAIN, 30));
 		button_2.setBackground(SystemColor.menu);
 		frame.getContentPane().add(button_2);
-		
-		button_3 = new JButton("CONFIRMAR");
-		button_3.setBounds(548, 507, 242, 82);
-		button_3.setFont(new Font("The Next Font", Font.PLAIN, 30));
-		button_3.setBackground(SystemColor.menu);
-		frame.getContentPane().add(button_3);
 		
 		JLabel lblAadirPedido = new JLabel("A\u00D1ADIR PEDIDO");
 		lblAadirPedido.setBounds(24, 145, 125, 28);

@@ -1,11 +1,13 @@
-
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.DriverManager;
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.ArrayList;
+import java.util.Properties;
 
 import javax.swing.table.DefaultTableModel;
 
@@ -13,14 +15,15 @@ import javax.swing.table.DefaultTableModel;
 
 public class ConexionBBDD {
 
-	private String bd;
-	private String url= "jdbc:oracle:thin:@localhost:1521:XE";
-	private String usr = "SYSTEM";
-	private String pwd = "lorca";
+	private String url;
+	private String usr;
+	private String pwd;
+	private String esquema;
 	public Connection conexion;
 	
 
 	public ConexionBBDD()  {
+		FicheroIni();
 		
 		try {
 			Class.forName("oracle.jdbc.driver.OracleDriver");
@@ -40,11 +43,38 @@ public class ConexionBBDD {
 		
 	}
 	
+	public void FicheroIni() {
+		Properties properties = new Properties();
+		InputStream entrada = null;
+		try {
+			     File miFichero= new File("src/FicheroIni.ini");
+			     if(miFichero.exists()) {
+			    	 entrada = new FileInputStream(miFichero);
+			    	 properties.load(entrada);
+			    	 url = properties.getProperty("dbhost");
+			    	 usr = properties.getProperty("dbuser");
+			    	 pwd = properties.getProperty("dbpasswd");
+			    	 esquema = properties.getProperty("dbname");
+			     }	     
+		}catch (IOException ex) {
+			ex.printStackTrace();
+		}finally {
+			if(entrada != null) {
+				try {
+					entrada.close();
+				}catch (IOException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+	
+		
+	}
 	public DefaultTableModel ConsultaTablaCategorias() {
 		String [] columnas={"IDPRODUCTO","NOMBRE","PRECIO","CANTIDAD_RESTANTE"};
 		String [] registro=new String[4];
 		DefaultTableModel ModeloTabla = new DefaultTableModel(null,columnas);
-		String query = "SELECT * FROM ADRIAN.PRODUCTO";
+		String query = "SELECT * FROM "+ esquema +".PRODUCTO";
 		 
 		try {
 			Statement stmt = conexion.createStatement();
@@ -71,7 +101,7 @@ public class ConexionBBDD {
 		String [] columnas={"IDCATEGORIA", "TIPO_PRODUCTO"};
 		String [] registro=new String[2];
 		DefaultTableModel ModeloTabla = new DefaultTableModel(null,columnas);
-		String query = "SELECT * FROM ADRIAN.CATEGORIA";
+		String query = "SELECT * FROM "+ esquema +".CATEGORIA";
 		 
 		try {
 			Statement stmt = conexion.createStatement();
@@ -96,7 +126,7 @@ public class ConexionBBDD {
 		String [] columnas={"IDMESA", "NUMERO_SILLAS","UBICACION_SILLAS"};
 		String [] registro=new String[3];
 		DefaultTableModel ModeloTabla = new DefaultTableModel(null,columnas);
-		String query = "SELECT * FROM ADRIAN.MESA";
+		String query = "SELECT * FROM "+ esquema +".MESA";
 		 
 		try {
 			Statement stmt = conexion.createStatement();
@@ -122,7 +152,7 @@ public class ConexionBBDD {
 		
 		int resultado = 0;
 		
-		String query = "INSERT INTO ADRIAN.PRODUCTO VALUES(" + p.IDPRODUCTO + " , '" + p.NOMBRE + "' , " + p.PRECIO + " , " + p.CANTIDAD_RESTANTE + ")";
+		String query = "INSERT INTO "+ esquema +".PRODUCTO VALUES(" + p.IDPRODUCTO + " , '" + p.NOMBRE + "' , " + p.PRECIO + " , " + p.CANTIDAD_RESTANTE + ")";
 		System.out.println(query);
 		try {
 			Statement stmt = conexion.createStatement();
@@ -140,7 +170,43 @@ public class ConexionBBDD {
     		
     		int resultado = 0;
     		
-    		String query = "DELETE * FROM ADRIAN.PRODUCTO WHERE NOMBRE = '" + p.getNOMBRE() + "')";
+    		String query = "DELETE FROM "+ esquema +".PRODUCTO WHERE NOMBRE = '" + p.NOMBRE + "'";
+    		System.out.println(query);
+    		try {
+    			Statement stmt = conexion.createStatement();
+    			resultado = stmt.executeUpdate(query);
+    			stmt.close();
+    			
+    		}catch (SQLException s){
+    			s.printStackTrace();
+    		}
+    		
+    		return resultado;
+    		
+    	}
+        public int ConsultaInsertarCategoria(Categoria c) {
+    		
+    		int resultado = 0;
+    		
+    		String query = "INSERT INTO "+ esquema +".CATEGORIA VALUES(" + c.IDCATEGORIA + " , '" + c.TIPO_PRODUCTO + "')";
+    		System.out.println(query);
+    		try {
+    			Statement stmt = conexion.createStatement();
+    			resultado = stmt.executeUpdate(query);
+    			stmt.close();
+    			
+    		}catch (SQLException s){
+    			s.printStackTrace();
+    		}
+    		
+    		return resultado;
+    		
+    	}
+        public int ConsultaBorrarCategoria(Categoria c) {
+    		
+    		int resultado = 0;
+    		
+    		String query = "DELETE FROM "+ esquema +".CATEGORIA WHERE TIPO_PRODUCTO = '" + c.TIPO_PRODUCTO + "'";
     		System.out.println(query);
     		try {
     			Statement stmt = conexion.createStatement();

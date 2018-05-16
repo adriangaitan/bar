@@ -1,5 +1,4 @@
 import javax.swing.JFrame;
-import javax.swing.JTextField;
 import javax.swing.JButton;
 import java.awt.Font;
 import java.awt.Color;
@@ -9,7 +8,7 @@ import java.awt.event.ActionEvent;
 
 public class VentanaPrincipal {
 
-	private JFrame frame;
+	JFrame frame;
 
 	/**
 	 * Launch the application.
@@ -70,4 +69,6 @@ public class VentanaPrincipal {
 		btnAdmin.setBounds(10, 456, 754, 95);
 		frame.getContentPane().add(btnAdmin);
 	}
+	
+	
 }

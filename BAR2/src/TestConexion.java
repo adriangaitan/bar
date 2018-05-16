@@ -1,11 +1,7 @@
-
-
-
 import java.sql.*;
 
 public class TestConexion {
 
-	private String bd;
 	private String url= "jdbc:oracle:thin:@localhost:1521:XE";
 	private String usr = "SYSTEM";
 	private String pwd = "lorca";

@@ -1,25 +1,14 @@
-
 import java.awt.EventQueue;
-
 import javax.swing.JFrame;
 import javax.swing.JButton;
-import javax.swing.JPasswordField;
-import javax.swing.JSpinner;
-import javax.swing.JList;
-import javax.swing.JScrollBar;
 import java.awt.Color;
 import java.awt.Font;
 import javax.swing.JLabel;
-import javax.swing.JTextPane;
 import javax.swing.JTextField;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.SystemColor;
-import javax.swing.SwingConstants;
-import javax.swing.JToolBar;
-import javax.swing.JScrollPane;
-import javax.swing.JTable;
-import javax.swing.table.DefaultTableModel;
+
 
 public class Administrador {
 
@@ -29,7 +18,6 @@ public class Administrador {
 	private JLabel lblNombre;
 	private JButton button_1;
 	private JButton button_5;
-	private JButton button_6;
 	private JTextField textField;
 	private JTextField textField_2;
 	private JTextField textField_3;
@@ -42,6 +30,9 @@ public class Administrador {
 	String NOMBRE;
 	double PRECIO;
 	Integer CANTIDAD_RESTANTE;
+	Categoria c;
+	Integer IDCATEGORIA;
+	String TIPO_PRODUCTO;
 
 	/**
 	 * Launch the application.
@@ -117,6 +108,7 @@ public class Administrador {
 		button_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				NOMBRE = textField.getText();
+				Producto p = new Producto(IDPRODUCTO, NOMBRE, PRECIO, CANTIDAD_RESTANTE);
 				conexion = new ConexionBBDD();
 				conexion.ConsultaBorrarProducto(p);
 				
@@ -126,16 +118,17 @@ public class Administrador {
 		frame.getContentPane().add(button_1);
 		
 		button_5 = new JButton("VOLVER");
-		button_5.setBounds(10, 521, 242, 54);
+		button_5.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				frame.setVisible(false);
+				VentanaPrincipal window = new VentanaPrincipal();
+				window.frame.setVisible(true);
+			}
+		});
+		button_5.setBounds(10, 537, 242, 38);
 		button_5.setFont(new Font("The Next Font", Font.PLAIN, 30));
 		button_5.setBackground(SystemColor.menu);
 		frame.getContentPane().add(button_5);
-		
-		button_6 = new JButton("CONFIRMAR");
-		button_6.setBounds(558, 521, 242, 54);
-		button_6.setFont(new Font("The Next Font", Font.PLAIN, 30));
-		button_6.setBackground(SystemColor.menu);
-		frame.getContentPane().add(button_6);
 		
 		textField = new JTextField();
 		textField.setBounds(211, 190, 166, 21);
@@ -242,12 +235,31 @@ public class Administrador {
 		frame.getContentPane().add(textField_4);
 		
 		JButton button_3 = new JButton("A\u00D1ADIR");
+		button_3.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				TIPO_PRODUCTO = textField_4.getText();
+				conexion = new ConexionBBDD();
+				Categoria c = new Categoria(IDCATEGORIA, TIPO_PRODUCTO);
+				conexion.ConsultaInsertarCategoria(c);
+			}
+		});
 		button_3.setForeground(Color.GREEN);
 		button_3.setFont(new Font("The Next Font", Font.PLAIN, 20));
 		button_3.setBounds(245, 415, 314, 32);
 		frame.getContentPane().add(button_3);
 		
 		JButton button_7 = new JButton("ELIMINAR");
+		button_7.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				conexion = new ConexionBBDD();
+				TIPO_PRODUCTO = textField_4.getText();
+				Categoria c = new Categoria(IDCATEGORIA, TIPO_PRODUCTO);
+				conexion.ConsultaBorrarCategoria(c);
+				
+				
+				
+			}
+		});
 		button_7.setForeground(Color.RED);
 		button_7.setFont(new Font("The Next Font", Font.PLAIN, 20));
 		button_7.setBounds(245, 478, 314, 32);
