@@ -146,7 +146,7 @@ public class ConexionBBDD {
 		
 		return ModeloTabla;
 		
-	}
+	    }
         public int ConsultaInsertarProducto(Producto p) {
 		
 		int resultado = 0;
@@ -164,7 +164,7 @@ public class ConexionBBDD {
 		
 		return resultado;
 		
-	}
+	    }
         public int ConsultaBorrarProducto(Producto p) {
     		
     		int resultado = 0;
@@ -219,7 +219,17 @@ public class ConexionBBDD {
     		return resultado;
     		
     	}
+        public int ConsultaModificarProducto(Producto p) {
+			return 0;
+        }
+        public int ConsultaModificarCategoria(Categoria c) {
+			return 0;
+        }
+        }
+    		
+    	
+
 
 		
 	
-	}
+	

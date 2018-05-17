@@ -8,6 +8,7 @@ import javax.swing.JTextField;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.SystemColor;
+import java.awt.Window;
 
 
 public class Administrador {
@@ -173,6 +174,16 @@ public class Administrador {
 		frame.getContentPane().add(lblCantidad);
 		
 		JButton button = new JButton("MODIFICAR");
+		button.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				ModificarCategoriaProducto modifi = new ModificarCategoriaProducto();
+				modifi.frame.setVisible(true);
+				
+				
+				
+				
+			}
+		});
 		button.setForeground(Color.ORANGE);
 		button.setFont(new Font("The Next Font", Font.PLAIN, 20));
 		button.setBounds(245, 252, 314, 32);
@@ -266,6 +277,12 @@ public class Administrador {
 		frame.getContentPane().add(button_7);
 		
 		JButton button_4 = new JButton("MODIFICAR");
+		button_4.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				ModificarCategoriaProducto modifi = new ModificarCategoriaProducto();
+				modifi.frame.setVisible(true);
+			}
+		});
 		button_4.setForeground(Color.ORANGE);
 		button_4.setFont(new Font("The Next Font", Font.PLAIN, 20));
 		button_4.setBounds(245, 444, 314, 38);
