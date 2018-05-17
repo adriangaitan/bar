@@ -60,7 +60,7 @@ public class VentanaPrincipal {
 		JButton btnAdmin = new JButton("ADMIN");
 		btnAdmin.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Administrador window = new Administrador();
+				ContraseñaAdmin window = new ContraseñaAdmin();
 				window.frame.setVisible(true);
 			}
 		});

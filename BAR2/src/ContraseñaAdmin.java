@@ -1,16 +1,20 @@
 import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import java.awt.Color;
-import javax.swing.JTextField;
 import java.awt.Font;
 import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+import java.awt.SystemColor;
+import javax.swing.JPasswordField;
 
 
 public class ContraseñaAdmin {
 
-	private JFrame frame;
-	private JTextField textField;
+	public JFrame frame;
+	private JPasswordField passwordField;
 
 	/**
 	 * Launch the application.
@@ -47,13 +51,6 @@ public class ContraseñaAdmin {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
-		textField = new JTextField();
-		textField.setForeground(Color.RED);
-		textField.setFont(new Font("The Next Font", Font.PLAIN, 11));
-		textField.setBounds(107, 251, 599, 58);
-		frame.getContentPane().add(textField);
-		textField.setColumns(10);
-		
 		JLabel lblIntroduceLaContrasea = new JLabel("INTRODUCE LA CONTRASE\u00D1A");
 		lblIntroduceLaContrasea.setBackground(Color.WHITE);
 		lblIntroduceLaContrasea.setForeground(Color.WHITE);
@@ -62,9 +59,38 @@ public class ContraseñaAdmin {
 		frame.getContentPane().add(lblIntroduceLaContrasea);
 		
 		JButton btnAtras = new JButton("VOLVER");
+		btnAtras.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				frame.setVisible(false);
+				VentanaPrincipal window = new VentanaPrincipal();
+				window.frame.setVisible(true);
+			}
+		});
 		btnAtras.setBackground(new Color(240, 240, 240));
 		btnAtras.setFont(new Font("The Next Font", Font.PLAIN, 30));
-		btnAtras.setBounds(279, 382, 242, 53);
+		btnAtras.setBounds(107, 451, 242, 53);
 		frame.getContentPane().add(btnAtras);
+		
+		JButton btnConfirmar = new JButton("CONFIRMAR");
+		btnConfirmar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if (passwordField.getText().equals("1234")) {
+					frame.setVisible(false);
+					Administrador admin = new Administrador();
+					admin.frame.setVisible(true);
+				}else {
+					JOptionPane.showMessageDialog(frame, "Contraseña Incorrecta");
+				}
+				
+			}
+		});
+		btnConfirmar.setFont(new Font("Dialog", Font.PLAIN, 30));
+		btnConfirmar.setBackground(SystemColor.menu);
+		btnConfirmar.setBounds(464, 451, 242, 53);
+		frame.getContentPane().add(btnConfirmar);
+		
+		passwordField = new JPasswordField();
+		passwordField.setBounds(27, 229, 753, 64);
+		frame.getContentPane().add(passwordField);
 	}
 }
