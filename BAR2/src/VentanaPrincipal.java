@@ -46,7 +46,9 @@ public class VentanaPrincipal {
 		
 		JButton btnPedidos = new JButton("PEDIDOS");
 		btnPedidos.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+			
+		public void actionPerformed(ActionEvent e) {
+			    frame.setVisible(false);
 				Pedidos window = new Pedidos();
 				window.frame.setVisible(true);
 			}
